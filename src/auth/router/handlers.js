@@ -6,9 +6,7 @@ const bcrypt=require("bcrypt");
 async function handleSignup(req, res, next) {
   try {
   
-    console.log( req.body.password)
-    req.body.password = await bcrypt.hash(req.body.password, 10);
-  console.log('password', req.body.password);
+  req.body.password = await bcrypt.hash(req.body.password, 10);  
   const userRecord = await users.create(req.body);
     const output = {
       user: userRecord,
