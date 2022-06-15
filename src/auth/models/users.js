@@ -5,15 +5,16 @@ const jwt=require('jsonwebtoken')
 require("dotenv").config();
 
 const userSchema = (sequelize, DataTypes) => {
-  const model = sequelize.define('samah', {
-    username: { type: DataTypes.STRING, allowNull: false, unique: true },
+  const model = sequelize.define('tamara', {
     password: { type: DataTypes.STRING, allowNull: false},
-
+    username: { type: DataTypes.STRING, allowNull: false, unique: true },
     
     token: {
       type: DataTypes.VIRTUAL,
       get() {
-        return jwt.sign({ username: this.username },process.env.SECRET);
+        return jwt.sign({ username: this.username },process.env.SECRET,{
+          expiresIn: "15m"}
+          );
       }
     }
   });
@@ -27,15 +28,14 @@ const userSchema = (sequelize, DataTypes) => {
   model.authenticateBasic = async function (username, password) {
   
     const user = await this.findOne({ where: { username: username } })
-    
-    // console.log("pass "+password);
-    // console.log("user  "+user.password)
+    console.log(user);
     const valid = await bcrypt.compare(password, user.password)
     console.log("valid",valid);
     
     if (valid) {
 
-      let newToken = jwt.sign({ username: user.username },process.env.SECRET);
+      let newToken = jwt.sign({ username: user.username },process.env.SECRET,{
+        expiresIn: "15m"});
         // console.log('************************', newToken);
         user.token = newToken;
        return user; 
