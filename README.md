@@ -1,11 +1,11 @@
 # bearer-auth
-[gitHub]()
+[gitHub](https://github.com/alsatarysamah/bearer-auth)
 
-[PR]()
+[PR](https://github.com/alsatarysamah/bearer-auth/pull/2)
 
-[heroKu]()
+[heroKu](https://samah-basic-bearer.herokuapp.com/)
 
-[Action]()
+[Action](https://github.com/alsatarysamah/bearer-auth/actions)
 
 ![](./bearer.png)
 
