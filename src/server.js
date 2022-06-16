@@ -12,7 +12,9 @@ const authRoutes = require('./auth/router/index.js');
 
 // Prepare the express app
 const app = express();
-
+app.get("/",(req,res)=>{
+  res.send("Home")
+})
 // App Level MW
 app.use(cors());
 app.use(morgan('dev'));
